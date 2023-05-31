@@ -1,0 +1,11 @@
+al001 1 Rui Pinto
+al002 1 Maria Silva
+al003 2 Tiago Ferreira
+al004 3 Sofia Macedo
+al005 2 Carolina Macado
+al006 1 Vitor lima
+al007 3 Jonas Pereira
+al008 2 Ana Martins
+al009 2 Filipe Pinheiro
+al010 1 Marta Cunha
+ 
