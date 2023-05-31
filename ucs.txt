@@ -1,10 +1,34 @@
-1 1 programacao funcional
-2 3 redes de computadores
-3 1 topicos de matemática discreta
-4 1 elementos de fisica geral
-5 2 compiladores
-6 2 metodos estatisticos
-7 2 engenharia de software
-8 3 engenharia web
-9 3 sistemas distribuidos
-10 2 bases de dados
+1 1 Algebra linear
+2 1 Analise matematica I
+3 1 Laboratorio de informatica e computadores
+4 1 Topicos de matematica discreta
+5 1 Programacao procedimental
+6 1 Seminario de informatica
+7 1 Analise matematica II
+8 1 Elementos de fisica geral
+9 1 Engenharia nas organizacoes
+10 1 Laboratorio de programacao
+11 1 Programacao funcional
+12 1 Sistemas computacionais
+13 2 Compiladores
+14 2 Engenharia de software
+15 2 Métodos estatísticos
+16 2 Programacao orientada a objetos
+17 2 Sistemas operativos
+18 2 Algoritmia e estruturas de dados
+19 2 Bases de dados
+20 2 Comunicacao de dados
+21 2 Laboratorio de planeamento e desenvolvimento de software
+22 2 Metodos computacionais em engenharia
+23 2 Programacao multiplataforma
+24 3 Engenharia web
+25 3 Gestao de projetos em engenharia
+26 3 Inteligencia artificial
+27 3 Laboratorio de aplicacoes web e bases de dados
+28 3 Redes de computadores
+29 3 Sistemas de informacao
+30 3 Introducao a ciencia dos dados
+31 3 Computacao grafica
+32 3 Interacao pessoa computador
+33 3 Laboratorio de projeto em engenharia informatica
+34 3 Sistemas distribuidos
