@@ -1,0 +1,10 @@
+1 1 programacao funcional
+2 3 redes de computadores
+3 1 topicos de matemática discreta
+4 1 elementos de fisica geral
+5 2 compiladores
+6 2 metodos estatisticos
+7 2 engenharia de software
+8 3 engenharia web
+9 3 sistemas distribuidos
+10 2 bases de dados
