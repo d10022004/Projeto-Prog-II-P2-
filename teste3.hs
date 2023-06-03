@@ -1,4 +1,4 @@
-import Data.List (nub, intersect)
+import Data.List (intersect)
 import Data.Maybe (fromMaybe)
 
 type UC = Int
