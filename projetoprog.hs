@@ -107,12 +107,17 @@ apreins = do
         inscricao = toinscri list
     return inscricao
 
+extrairUCSeAno :: [(Int, Int, String)] -> [(String, Int)]
+extrairUCSeAno = map (\(_, ano, nome) -> (nome, ano))
+
 extrairUCS :: [(Int, Int, String)] -> [String]
 extrairUCS = map (\(_, _, nome) -> nome)
+
 -------------------------------------------------------------------------------------------------------------------------------------------
------ PARTE 2 --------------------------------------------
------ FUNCOES DA ALINEA 1 e 2 ------------------------------------------
-data Exame = Exame { uc :: String, sala :: String, dia :: String } deriving (Show, Eq, Ord)
+----- PARTE 2 ------------------------------------------------------------------------------------------
+----- FUNCOES DA ALINEA 1 e 2 --------------------------------------------------------------------------
+
+data Exame = Exame { uc :: String, sala :: String, dia :: String, ano :: Int } deriving (Show, Eq, Ord)
 
 enumerarsalas :: Int -> [String]
 enumerarsalas n = map (\i -> "Sala" ++ show i) [1..n]
@@ -120,27 +125,32 @@ enumerarsalas n = map (\i -> "Sala" ++ show i) [1..n]
 enumerardias :: Int -> [String]
 enumerardias n = map (\i -> "Dia" ++ show i) [1..n]
 
+gerarEscalonamento :: [(String, Int)] -> [(String, String)] -> [Exame]
+gerarEscalonamento ucs slots = zipWith (\uc slot -> Exame (fst uc) (fst slot) (snd slot) (snd uc)) ucs slots
 
-gerarEscalonamento :: [String] -> [(String, String)] -> [Exame]
-gerarEscalonamento ucs slots = zipWith (\uc slot -> Exame uc (fst slot) (snd slot)) ucs slots
+sameDay :: Exame -> Exame -> Bool
+sameDay exame1 exame2 = ano exame1 == ano exame2 && dia exame1 == dia exame2
 
 verificarConflitos :: [Exame] -> Bool
-verificarConflitos exames = length (nub exames) /= length exames
+verificarConflitos exames = any (\exame -> length (filter (sameDay exame) exames) > 1) exames
 
 ponto1 :: [(Int, Int, String)] -> Int -> Int -> IO ()
-ponto1 a b c= do
-  let ucs = extrairUCS a
+ponto1 a b c = do
+  let ucseano = extrairUCSeAno a
   let salas = enumerarsalas b
   let dias = enumerardias c
   let slots = [(sala, dia) | sala <- salas, dia <- dias]
   
-  if length slots < length ucs
+  if length slots < length ucseano
     then putStrLn "Número insuficiente de salas e/ou dias disponíveis para acomodar todos os exames."
     else do
-        let escalonamento = gerarEscalonamento ucs slots
+        let escalonamento = gerarEscalonamento ucseano slots
         if verificarConflitos escalonamento
           then putStrLn "Há conflitos no escalonamento dos exames."
           else writeFile "escalonamento.txt" (unlines $ map show escalonamento)
+
+
+
 
 -------------------------FUNCOES PRINCIPAIS------------------------------------------------------------
 recetor :: Int -> Int -> Int -> IO()
@@ -152,7 +162,9 @@ recetor d s l = do
     op <- opcoes
     if op == 1 
         then ponto1 cadeiras s d
-        else return()
+        else if op ==2
+            then return()
+            else return()
 
 
 menu :: IO()
@@ -180,4 +192,3 @@ main = do
     funcaotrabalho
     main2
     return ()
-
