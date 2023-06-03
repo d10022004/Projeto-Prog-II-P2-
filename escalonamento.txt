@@ -1,0 +1,4 @@
+Exame {uc = "UC1", sala = "Sala1", dia = "Segunda"}
+Exame {uc = "UC2", sala = "Sala1", dia = "Ter\231a"}
+Exame {uc = "UC3", sala = "Sala2", dia = "Segunda"}
+Exame {uc = "UC4", sala = "Sala2", dia = "Ter\231a"}
