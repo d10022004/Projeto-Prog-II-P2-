@@ -1,34 +1,34 @@
-Exame {uc = "Algebra linear", sala = "Sala1", dia = "Dia1"}
-Exame {uc = "Analise matematica I", sala = "Sala1", dia = "Dia2"}
-Exame {uc = "Laboratorio de informatica e computadores", sala = "Sala1", dia = "Dia3"}
-Exame {uc = "Topicos de matematica discreta", sala = "Sala2", dia = "Dia1"}
-Exame {uc = "Programacao procedimental", sala = "Sala2", dia = "Dia2"}
-Exame {uc = "Seminario de informatica", sala = "Sala2", dia = "Dia3"}
-Exame {uc = "Analise matematica II", sala = "Sala3", dia = "Dia1"}
-Exame {uc = "Elementos de fisica geral", sala = "Sala3", dia = "Dia2"}
-Exame {uc = "Engenharia nas organizacoes", sala = "Sala3", dia = "Dia3"}
-Exame {uc = "Laboratorio de programacao", sala = "Sala4", dia = "Dia1"}
-Exame {uc = "Programacao funcional", sala = "Sala4", dia = "Dia2"}
-Exame {uc = "Sistemas computacionais", sala = "Sala4", dia = "Dia3"}
-Exame {uc = "Compiladores", sala = "Sala5", dia = "Dia1"}
-Exame {uc = "Engenharia de software", sala = "Sala5", dia = "Dia2"}
-Exame {uc = "M\9500\174todos estat\9500\161sticos", sala = "Sala5", dia = "Dia3"}
-Exame {uc = "Programacao orientada a objetos", sala = "Sala6", dia = "Dia1"}
-Exame {uc = "Sistemas operativos", sala = "Sala6", dia = "Dia2"}
-Exame {uc = "Algoritmia e estruturas de dados", sala = "Sala6", dia = "Dia3"}
-Exame {uc = "Bases de dados", sala = "Sala7", dia = "Dia1"}
-Exame {uc = "Comunicacao de dados", sala = "Sala7", dia = "Dia2"}
-Exame {uc = "Laboratorio de planeamento e desenvolvimento de software", sala = "Sala7", dia = "Dia3"}
-Exame {uc = "Metodos computacionais em engenharia", sala = "Sala8", dia = "Dia1"}
-Exame {uc = "Programacao multiplataforma", sala = "Sala8", dia = "Dia2"}
-Exame {uc = "Engenharia web", sala = "Sala8", dia = "Dia3"}
-Exame {uc = "Gestao de projetos em engenharia", sala = "Sala9", dia = "Dia1"}
-Exame {uc = "Inteligencia artificial", sala = "Sala9", dia = "Dia2"}
-Exame {uc = "Laboratorio de aplicacoes web e bases de dados", sala = "Sala9", dia = "Dia3"}
-Exame {uc = "Redes de computadores", sala = "Sala10", dia = "Dia1"}
-Exame {uc = "Sistemas de informacao", sala = "Sala10", dia = "Dia2"}
-Exame {uc = "Introducao a ciencia dos dados", sala = "Sala10", dia = "Dia3"}
-Exame {uc = "Computacao grafica", sala = "Sala11", dia = "Dia1"}
-Exame {uc = "Interacao pessoa computador", sala = "Sala11", dia = "Dia2"}
-Exame {uc = "Laboratorio de projeto em engenharia informatica", sala = "Sala11", dia = "Dia3"}
-Exame {uc = "Sistemas distribuidos", sala = "Sala12", dia = "Dia1"}
+Exame {uc = "Algebra linear", sala = "Sala1", dia = "Dia1", ano = 1}
+Exame {uc = "Analise matematica I", sala = "Sala1", dia = "Dia2", ano = 1}
+Exame {uc = "Laboratorio de informatica e computadores", sala = "Sala1", dia = "Dia3", ano = 1}
+Exame {uc = "Topicos de matematica discreta", sala = "Sala1", dia = "Dia4", ano = 1}
+Exame {uc = "Programacao procedimental", sala = "Sala1", dia = "Dia5", ano = 1}
+Exame {uc = "Seminario de informatica", sala = "Sala1", dia = "Dia6", ano = 1}
+Exame {uc = "Analise matematica II", sala = "Sala1", dia = "Dia7", ano = 1}
+Exame {uc = "Elementos de fisica geral", sala = "Sala1", dia = "Dia8", ano = 1}
+Exame {uc = "Engenharia nas organizacoes", sala = "Sala1", dia = "Dia9", ano = 1}
+Exame {uc = "Laboratorio de programacao", sala = "Sala1", dia = "Dia10", ano = 1}
+Exame {uc = "Programacao funcional", sala = "Sala1", dia = "Dia11", ano = 1}
+Exame {uc = "Sistemas computacionais", sala = "Sala1", dia = "Dia12", ano = 1}
+Exame {uc = "Compiladores", sala = "Sala1", dia = "Dia13", ano = 2}
+Exame {uc = "Engenharia de software", sala = "Sala1", dia = "Dia14", ano = 2}
+Exame {uc = "M\9500\174todos estat\9500\161sticos", sala = "Sala1", dia = "Dia15", ano = 2}
+Exame {uc = "Programacao orientada a objetos", sala = "Sala1", dia = "Dia16", ano = 2}
+Exame {uc = "Sistemas operativos", sala = "Sala1", dia = "Dia17", ano = 2}
+Exame {uc = "Algoritmia e estruturas de dados", sala = "Sala1", dia = "Dia18", ano = 2}
+Exame {uc = "Bases de dados", sala = "Sala1", dia = "Dia19", ano = 2}
+Exame {uc = "Comunicacao de dados", sala = "Sala1", dia = "Dia20", ano = 2}
+Exame {uc = "Laboratorio de planeamento e desenvolvimento de software", sala = "Sala1", dia = "Dia21", ano = 2}
+Exame {uc = "Metodos computacionais em engenharia", sala = "Sala1", dia = "Dia22", ano = 2}
+Exame {uc = "Programacao multiplataforma", sala = "Sala1", dia = "Dia23", ano = 2}
+Exame {uc = "Engenharia web", sala = "Sala1", dia = "Dia24", ano = 3}
+Exame {uc = "Gestao de projetos em engenharia", sala = "Sala2", dia = "Dia1", ano = 3}
+Exame {uc = "Inteligencia artificial", sala = "Sala2", dia = "Dia2", ano = 3}
+Exame {uc = "Laboratorio de aplicacoes web e bases de dados", sala = "Sala2", dia = "Dia3", ano = 3}
+Exame {uc = "Redes de computadores", sala = "Sala2", dia = "Dia4", ano = 3}
+Exame {uc = "Sistemas de informacao", sala = "Sala2", dia = "Dia5", ano = 3}
+Exame {uc = "Introducao a ciencia dos dados", sala = "Sala2", dia = "Dia6", ano = 3}
+Exame {uc = "Computacao grafica", sala = "Sala2", dia = "Dia7", ano = 3}
+Exame {uc = "Interacao pessoa computador", sala = "Sala2", dia = "Dia8", ano = 3}
+Exame {uc = "Laboratorio de projeto em engenharia informatica", sala = "Sala2", dia = "Dia9", ano = 3}
+Exame {uc = "Sistemas distribuidos", sala = "Sala2", dia = "Dia10", ano = 3}
