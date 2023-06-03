@@ -98,15 +98,16 @@ apreins = do
 ------------------------------------------------------------------------------
 
 -- Função que apresenta todas as cadeiras e os respetivos alunos que estão inscritos
-encdisc :: [(Int, Int, String)] -> [(String, Int)] -> [(String, Int, String)] -> [(String, [(String, Int)])]
-encdisc disciplinas alunos inscricoes =
-    let resultado = encdisci alunos inscricoes <$> disciplinas
-    in resultado
+encdisc :: [(Int, Int, String)] -> [(String, Int)] -> [(String, Int, String)] -> IO [(String, [String])]
+encdisc disciplinas alunos inscricoes = do
+    let resultado = map (encdisci alunos inscricoes) disciplinas
+    return resultado
   where
-    encdisci :: [(String, Int)] -> [(String, Int, String)] -> (Int, Int, String) -> (String, [(String, Int)])
-    encdisci alunos inscricoes (cod, _, disc) = (disc, alunosinscritos)
-      where
-        alunosinscritos = filter (\(_, c) -> c == cod) alunos
+    encdisci :: [(String, Int)] -> [(String, Int, String)] -> (Int, Int, String) -> (String, [String])
+    encdisci alunos inscricoes (cod, _, disc) = (disc, [aluno | (aluno, codAluno) <- alunos, codAluno == cod])
+
+
+
 
 
 -- Função que apresenta todos os alunos e as respetivas cadeiras que estão inscritos
@@ -190,7 +191,8 @@ opcoes = do
 execop :: Int -> [(Int, Int, String)] -> [(String, Int)] -> [(String, Int, String)] -> IO()
 execop x uc ins al
     |x==1 = do
-        putStrLn (encdisc uc ins al)
+        resultado <- encdisc uc ins al
+        mapM_ (putStrLn . show) resultado
         main2
     |x==2 = do
         encal uc ins al
