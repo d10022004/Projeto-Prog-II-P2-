@@ -106,6 +106,14 @@ apreins = do
         inscricao = toinscri list
     return inscricao
 
+encdisc :: [(Int, Int, String)] -> [(String, Int)] -> [(String, Int, String)] -> IO [(String, [String])]
+encdisc disciplinas alunos inscricoes = do
+    let resultado = map (encdisci alunos inscricoes) disciplinas
+    return resultado
+  where
+    encdisci :: [(String, Int)] -> [(String, Int, String)] -> (Int, Int, String) -> (String, [String])
+    encdisci alunos inscricoes (cod, _, disc) = (disc, [aluno | (aluno, codAluno) <- alunos, codAluno == cod])
+
 extrairUCSeAno :: [(Int, Int, String)] -> [(String, Int)]
 extrairUCSeAno = map (\(_, ano, nome) -> (nome, ano))
 
@@ -149,12 +157,9 @@ ponto1 a b c = do
           else writeFile "escalonamento.txt" (unlines $ map show escalonamento)
 --------------------------------------------------------------------------------------------------------------------
 ---------Funcoes das alineas 3 e 4----------------------------------------------------------------------------------
-type UC = Int
-type Aluno = Int
 
--- Dados fictícios de inscrições dos alunos em cada UC
-inscricoes :: [(UC, [Aluno])]
-inscricoes = [(1, [1, 2, 3]), (2, [2, 3, 4]), (3, [3, 4, 5]), (4, [4, 5, 6]), (5, [5, 6, 7])]
+type UC = String
+type Aluno = String
 
 -- Função auxiliar para buscar os alunos inscritos em uma UC
 getAlunosInscritos :: UC -> [(UC, [Aluno])] -> [Aluno]
@@ -169,11 +174,11 @@ calcIncompatibilidades inscricoes =
   in incompatibilidades
 
 -- Exemplo de uso
-ponto2 :: IO ()
-ponto2 = do
-  let incompatibilidades = calcIncompatibilidades inscricoes
+ponto2 :: [(String, [String])] -> IO ()
+ponto2 a = do
+  let incompatibilidades = calcIncompatibilidades a
   putStrLn "Incompatibilidades entre pares de UCs:"
-  mapM_ (\(uc1, uc2, incompat) -> putStrLn $ "UCs " ++ show uc1 ++ " e " ++ show uc2 ++ ": " ++ show incompat ++ " alunos inscritos em ambas") incompatibilidades
+  mapM_ (\(uc1, uc2, incompat) -> putStrLn $ "UCs " ++ uc1 ++ " e " ++ uc2 ++ ": " ++ show incompat ++ " alunos inscritos em ambas") incompatibilidades
 
 
 
@@ -181,15 +186,16 @@ ponto2 = do
 -------------------------FUNCOES PRINCIPAIS------------------------------------------------------------
 recetor :: Int -> Int -> Int -> IO()
 recetor d s l = do
-    inscricoes <- apreins
+    inscricao <- apreins
     listalunos <- apreal
     cadeiras <- apreuc
+    inscUCS <-encdisc cadeiras inscricao listalunos
     putStrLn ("Indique a opção que prefere\n\t1->Criar ficheiro para Escalonamento\n\t2->Apresentação de incompatibilidades\t")
     op <- opcoes
     if op == 1 
         then ponto1 cadeiras s d
         else if op ==2
-            then return()
+            then ponto2 inscUCS
             else return()
 
 
