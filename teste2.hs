@@ -1,8 +1,8 @@
-import Data.List (permutations)
+import Data.List()
 
-type Exam = (Int, Int) -- (UC, Ano)
+type Exam = (String, Int) -- (Disciplina, Ano)
 
--- Função para verificar se dois exames estão no mesmo dia
+-- Função para verificar se duas disciplinas estão no mesmo ano
 sameDay :: Exam -> Exam -> Bool
 sameDay (_, ano1) (_, ano2) = ano1 == ano2
 
@@ -20,13 +20,13 @@ backtrack (exam:exams) assignments =
        [] -> Nothing -- nenhuma atribuição válida para este exame, retornar Nothing
        (validAssignment:_) -> backtrack exams (validAssignment : assignments) -- uma atribuição válida foi encontrada, continuar com o próximo exame
 
-solveExamScheduling :: [Exam] -> Maybe [(Exam, Int)]
-solveExamScheduling exams = backtrack exams []
+resolveexamesol:: [Exam] -> Maybe [(Exam, Int)]
+resolveexamesol exams = backtrack exams []
 
 -- Exemplo de uso
 main :: IO ()
 main = do
-  let exams = [(1, 2022), (2, 2022), (3, 2023), (4, 2023), (5, 2024)]
-  case solveExamScheduling exams of
+  let exams = [("UC1", 2), ("UC2", 1), ("UC3", 2), ("UC4", 3), ("UC5", 4)]
+  case resolveexamesol exams of
     Just assignments -> putStrLn (show assignments)
     Nothing -> putStrLn "No solution found."
