@@ -3,7 +3,15 @@ import System.IO
 import Data.Char (isSpace)
 import Text.Read (readMaybe)
 import Data.Maybe (mapMaybe)
-import Data.List (nub)
+import Control.Monad
+import Data.List
+
+opcoes :: IO Int
+opcoes = do
+    op <- getLine
+    let ope = read op :: Int
+    return ope
+
 
 -- PAUSA NA FUNÇÃO ------------------------------------------
 pause :: IO()
@@ -89,7 +97,7 @@ toinscr str = case words str of
 
 
 impins :: IO String
-impins = readFile "inscrições.txt"
+impins = readFile "inscricoes.txt"
 
 
 apreins :: IO [(String, Int)]
@@ -98,23 +106,54 @@ apreins = do
     let list = lines texto
         inscricao = toinscri list
     return inscricao
+
+extrairUCS :: [(Int, Int, String)] -> [String]
+extrairUCS = map (\(_, _, nome) -> nome)
 -------------------------------------------------------------------------------------------------------------------------------------------
 ----- PARTE 2 --------------------------------------------
--- EXEMPLO DO QUE A FUNCAO APREINS APRESENTA ->
+----- FUNCOES DA ALINEA 1 e 2 ------------------------------------------
+data Exame = Exame { uc :: String, sala :: String, dia :: String } deriving (Show, Eq, Ord)
 
-criacaosalas :: Int -> Int -> Int -> IO()
-criacaosalas d s l = do
+enumerarsalas :: Int -> [String]
+enumerarsalas n = map (\i -> "Sala" ++ show i) [1..n]
+
+enumerardias :: Int -> [String]
+enumerardias n = map (\i -> "Dia" ++ show i) [1..n]
+
+
+gerarEscalonamento :: [String] -> [(String, String)] -> [Exame]
+gerarEscalonamento ucs slots = zipWith (\uc slot -> Exame uc (fst slot) (snd slot)) ucs slots
+
+verificarConflitos :: [Exame] -> Bool
+verificarConflitos exames = length (nub exames) /= length exames
+
+ponto1 :: [(Int, Int, String)] -> Int -> Int -> IO ()
+ponto1 a b c= do
+  let ucs = extrairUCS a
+  let salas = enumerarsalas b
+  let dias = enumerardias c
+  let slots = [(sala, dia) | sala <- salas, dia <- dias]
+  
+  if length slots < length ucs
+    then putStrLn "Número insuficiente de salas e/ou dias disponíveis para acomodar todos os exames."
+    else do
+        let escalonamento = gerarEscalonamento ucs slots
+        if verificarConflitos escalonamento
+          then putStrLn "Há conflitos no escalonamento dos exames."
+          else writeFile "escalonamento.txt" (unlines $ map show escalonamento)
+
+-------------------------FUNCOES PRINCIPAIS------------------------------------------------------------
+recetor :: Int -> Int -> Int -> IO()
+recetor d s l = do
     inscricoes <- apreins
     listalunos <- apreal
     cadeiras <- apreuc
-    return ()
+    putStrLn ("Indique a opção que prefere\n\t1->Criar ficheiro para Escalonamento\n\t2->Apresentação de incompatibilidades\t")
+    op <- opcoes
+    if op == 1 
+        then ponto1 cadeiras s d
+        else return()
 
--------------------------FUNCOES PRINCIPAIS------------------------------------------------------------
-opcoes :: IO Int
-opcoes = do
-    op <- getLine
-    let ope = read op :: Int
-    return ope
 
 menu :: IO()
 menu = do
@@ -125,7 +164,7 @@ menu = do
     salas <- opcoes
     putStrLn ("\n->INTRODUZA O NUMERO DE LUGARES DISPONIVEIS EM CADA SALA\n")
     lugares <- opcoes
-    criacaosalas dias salas lugares
+    recetor dias salas lugares
     return ()
 
 main2 :: IO ()
