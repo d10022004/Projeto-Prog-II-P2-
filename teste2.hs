@@ -16,9 +16,9 @@ backtrack :: [Exam] -> [(Exam, Int)] -> Maybe [(Exam, Int)]
 backtrack [] assignments = Just assignments -- todos os exames foram atribuídos
 backtrack (exam:exams) assignments =
   let possibleDays = [1..5] -- assumindo que os exames podem ser agendados em um dos cinco dias da semana
-  in case filter isValidPartialAssignment (map (\day -> (exam, day) : assignments) possibleDays) of
-       [] -> backtrack exams assignments -- nenhuma atribuição válida para este exame, voltar atrás
-       (validAssignment:_) -> Just validAssignment -- uma atribuição válida foi encontrada
+  in case filter (isValidPartialAssignment . (: assignments)) [(exam, day) | day <- possibleDays] of
+       [] -> Nothing -- nenhuma atribuição válida para este exame, retornar Nothing
+       (validAssignment:_) -> backtrack exams (validAssignment : assignments) -- uma atribuição válida foi encontrada, continuar com o próximo exame
 
 solveExamScheduling :: [Exam] -> Maybe [(Exam, Int)]
 solveExamScheduling exams = backtrack exams []
@@ -30,5 +30,3 @@ main = do
   case solveExamScheduling exams of
     Just assignments -> putStrLn (show assignments)
     Nothing -> putStrLn "No solution found."
-
-
