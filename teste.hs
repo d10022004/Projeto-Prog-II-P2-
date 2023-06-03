@@ -1,25 +1,34 @@
-import Control.Monad
-import Data.List
+import Data.List (permutations)
 
-data Exame = Exame { uc :: String, sala :: String, dia :: String } deriving (Show, Eq, Ord)
+type Exam = (Int, Int) -- (UC, Ano)
 
-gerarEscalonamento :: [String] -> [(String, String)] -> [Exame]
-gerarEscalonamento ucs slots = zipWith (\uc slot -> Exame uc (fst slot) (snd slot)) ucs slots
+-- Função para verificar se dois exames estão no mesmo dia
+sameDay :: Exam -> Exam -> Bool
+sameDay (_, ano1) (_, ano2) = ano1 == ano2
 
-verificarConflitos :: [Exame] -> Bool
-verificarConflitos exames = length (nub exames) /= length exames
+-- Função para verificar se uma atribuição de exames está válida
+isValidAssignment :: [(Exam, Int)] -> Bool
+isValidAssignment exams =
+  all (\(exam, day) -> all (not . sameDay exam . fst) (filter ((== day) . snd) exams)) exams
 
+-- Função para gerar todas as permutações possíveis das atribuições de exames
+generatePermutations :: [Exam] -> [[(Exam, Int)]]
+generatePermutations exams =
+  filter isValidAssignment (permutations [(exam, day) | exam <- exams, day <- [1..]])
+
+-- Função para resolver o problema de escalonamento de exames
+solveExamScheduling :: [Exam] -> Maybe [(Exam, Int)]
+solveExamScheduling exams =
+  case generatePermutations exams of
+    [] -> Nothing
+    (x:_) -> Just x
+
+-- Exemplo de uso
 main :: IO ()
 main = do
-  let ucs = ["UC1", "UC2", "UC3", "UC4"]
-  let salas = ["Sala1"]
-  let dias = ["Segunda", "Terça"]
-  let slots = [(sala, dia) | sala <- salas, dia <- dias]
-  
-  if length slots < length ucs
-    then putStrLn "Número insuficiente de salas e/ou dias disponíveis para acomodar todos os exames."
-    else do
-        let escalonamento = gerarEscalonamento ucs slots
-        if verificarConflitos escalonamento
-          then putStrLn "Há conflitos no escalonamento dos exames."
-          else writeFile "escalonamento.txt" (unlines $ map show escalonamento)
+  let exams = [(1, 2022), (2, 2022), (3, 2023), (4, 2023), (5, 2024)]
+  case solveExamScheduling exams of
+    Just assignments -> putStrLn (show assignments)
+    Nothing -> putStrLn "No solution found."
+
+
