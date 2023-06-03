@@ -6,22 +6,22 @@ type Exam = (Int, Int) -- (UC, Ano)
 sameDay :: Exam -> Exam -> Bool
 sameDay (_, ano1) (_, ano2) = ano1 == ano2
 
--- Função para verificar se uma atribuição de exames está válida
-isValidAssignment :: [(Exam, Int)] -> Bool
-isValidAssignment exams =
+-- Função para verificar se uma atribuição de exames parcial é válida
+isValidPartialAssignment :: [(Exam, Int)] -> Bool
+isValidPartialAssignment exams =
   all (\(exam, day) -> all (not . sameDay exam . fst) (filter ((== day) . snd) exams)) exams
 
--- Função para gerar todas as permutações possíveis das atribuições de exames
-generatePermutations :: [Exam] -> [[(Exam, Int)]]
-generatePermutations exams =
-  filter isValidAssignment (permutations [(exam, day) | exam <- exams, day <- [1..]])
+-- Função para encontrar uma atribuição válida de exames utilizando backtracking
+backtrack :: [Exam] -> [(Exam, Int)] -> Maybe [(Exam, Int)]
+backtrack [] assignments = Just assignments -- todos os exames foram atribuídos
+backtrack (exam:exams) assignments =
+  let possibleDays = [1..5] -- assumindo que os exames podem ser agendados em um dos cinco dias da semana
+  in case filter isValidPartialAssignment (map (\day -> (exam, day) : assignments) possibleDays) of
+       [] -> backtrack exams assignments -- nenhuma atribuição válida para este exame, voltar atrás
+       (validAssignment:_) -> Just validAssignment -- uma atribuição válida foi encontrada
 
--- Função para resolver o problema de escalonamento de exames
 solveExamScheduling :: [Exam] -> Maybe [(Exam, Int)]
-solveExamScheduling exams =
-  case generatePermutations exams of
-    [] -> Nothing
-    (x:_) -> Just x
+solveExamScheduling exams = backtrack exams []
 
 -- Exemplo de uso
 main :: IO ()
