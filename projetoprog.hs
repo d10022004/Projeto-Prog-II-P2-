@@ -204,11 +204,9 @@ ponto1 a alinsUC b c max_capacidade= do
 type UC = String
 type Aluno = String
 
--- Função auxiliar para buscar os alunos inscritos em uma UC
 getAlunosInscritosponto2 :: UC -> [(UC, [Aluno])] -> [Aluno]
 getAlunosInscritosponto2 uc lst = fromMaybe [] (lookup uc lst)
 
--- Função para calcular as incompatibilidades entre cada par de UCs
 calcIncompatibilidades :: [(UC, [Aluno])] -> [(UC, UC, Int)]
 calcIncompatibilidades inscricoes =
   let ucs = map fst inscricoes
@@ -216,7 +214,6 @@ calcIncompatibilidades inscricoes =
       incompatibilidades = map (\(uc1, uc2) -> (uc1, uc2, length (intersect (getAlunosInscritosponto2 uc1 inscricoes) (getAlunosInscritosponto2 uc2 inscricoes)))) paresUCs
   in incompatibilidades
 
--- Exemplo de uso
 ponto2 :: [(String, [String])] -> IO ()
 ponto2 a = do
   let incompatibilidades = calcIncompatibilidades a
