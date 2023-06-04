@@ -1,60 +1,36 @@
-Exame {uc = "Algebra linear", sala = "", dia = "Dia1", ano = 1, alunos = ["al001","al002","al003","al006","al008","al009","al010"]}
-Exame {uc = "Analise matematica I", sala = "", dia = "Dia2", ano = 1, alunos = ["al004","al007"]}
-Exame {uc = "Laboratorio de informatica e computadores", sala = "", dia = "Dia3", ano = 1, alunos = ["al001","al002","al006","al010"]}
-Exame {uc = "Topicos de matematica discreta", sala = "", dia = "Dia4", ano = 1, alunos = ["al001","al002","al006","al010"]}
-Exame {uc = "Programacao procedimental", sala = "", dia = "Dia5", ano = 1, alunos = ["al003","al005","al008","al009"]}
-Exame {uc = "Seminario de informatica", sala = "", dia = "Dia6", ano = 1, alunos = ["al003","al005","al008","al009"]}
-Exame {uc = "Analise matematica II", sala = "", dia = "Dia7", ano = 1, alunos = ["al003","al005","al008","al009"]}
-Exame {uc = "Elementos de fisica geral", sala = "", dia = "Dia8", ano = 1, alunos = ["al004","al007"]}
-Exame {uc = "Engenharia nas organizacoes", sala = "", dia = "Dia9", ano = 1, alunos = ["al004","al007"]}
-Exame {uc = "Laboratorio de programacao", sala = "", dia = "Dia10", ano = 1, alunos = []}
-Exame {uc = "Programacao funcional", sala = "", dia = "Dia11", ano = 1, alunos = []}
-Exame {uc = "Sistemas computacionais", sala = "", dia = "Dia12", ano = 1, alunos = []}
-Exame {uc = "Compiladores", sala = "", dia = "Dia13", ano = 2, alunos = []}
-Exame {uc = "Engenharia de software", sala = "", dia = "Dia14", ano = 2, alunos = []}
-Exame {uc = "M\9500\174todos estat\9500\161sticos", sala = "", dia = "Dia15", ano = 2, alunos = []}
-Exame {uc = "Programacao orientada a objetos", sala = "", dia = "Dia16", ano = 2, alunos = []}
-Exame {uc = "Sistemas operativos", sala = "", dia = "Dia17", ano = 2, alunos = []}
-Exame {uc = "Algoritmia e estruturas de dados", sala = "", dia = "Dia18", ano = 2, alunos = []}
-Exame {uc = "Bases de dados", sala = "", dia = "Dia19", ano = 2, alunos = []}
-Exame {uc = "Comunicacao de dados", sala = "", dia = "Dia20", ano = 2, alunos = []}
-Exame {uc = "Laboratorio de planeamento e desenvolvimento de software", sala = "", dia = "Dia1", ano = 2, alunos = []}
-Exame {uc = "Metodos computacionais em engenharia", sala = "", dia = "Dia2", ano = 2, alunos = []}
-Exame {uc = "Programacao multiplataforma", sala = "", dia = "Dia3", ano = 2, alunos = []}
-Exame {uc = "Engenharia web", sala = "", dia = "Dia4", ano = 3, alunos = []}
-Exame {uc = "Gestao de projetos em engenharia", sala = "", dia = "Dia5", ano = 3, alunos = []}
-Exame {uc = "Inteligencia artificial", sala = "", dia = "Dia6", ano = 3, alunos = []}
-Exame {uc = "Laboratorio de aplicacoes web e bases de dados", sala = "", dia = "Dia7", ano = 3, alunos = []}
-Exame {uc = "Redes de computadores", sala = "", dia = "Dia8", ano = 3, alunos = []}
-Exame {uc = "Sistemas de informacao", sala = "", dia = "Dia9", ano = 3, alunos = []}
-Exame {uc = "Introducao a ciencia dos dados", sala = "", dia = "Dia10", ano = 3, alunos = []}
-Exame {uc = "Computacao grafica", sala = "", dia = "Dia11", ano = 3, alunos = []}
-Exame {uc = "Interacao pessoa computador", sala = "", dia = "Dia12", ano = 3, alunos = []}
-Exame {uc = "Laboratorio de projeto em engenharia informatica", sala = "", dia = "Dia13", ano = 3, alunos = []}
-Exame {uc = "Sistemas distribuidos", sala = "", dia = "Dia14", ano = 3, alunos = []}
+Exame {uc = "Algebra linear", salas = ["Sala1","Sala2","Sala3"], dia = "Dia1", ano = 1, alunos = []}
+Exame {uc = "Analise matematica I", salas = ["Sala1"], dia = "Dia2", ano = 1, alunos = []}
+Exame {uc = "Laboratorio de informatica e computadores", salas = ["Sala1","Sala2"], dia = "Dia3", ano = 1, alunos = []}
+Exame {uc = "Topicos de matematica discreta", salas = ["Sala1","Sala2"], dia = "Dia4", ano = 1, alunos = []}
+Exame {uc = "Programacao procedimental", salas = ["Sala1","Sala2"], dia = "Dia5", ano = 1, alunos = []}
+Exame {uc = "Seminario de informatica", salas = ["Sala1","Sala2"], dia = "Dia6", ano = 1, alunos = []}
+Exame {uc = "Analise matematica II", salas = ["Sala1","Sala2"], dia = "Dia7", ano = 1, alunos = []}
+Exame {uc = "Elementos de fisica geral", salas = ["Sala1"], dia = "Dia8", ano = 1, alunos = []}
+Exame {uc = "Engenharia nas organizacoes", salas = ["Sala1"], dia = "Dia9", ano = 1, alunos = []}
+Exame {uc = "Laboratorio de programacao", salas = ["Sala1"], dia = "Dia10", ano = 1, alunos = []}
+Exame {uc = "Programacao funcional", salas = ["Sala2"], dia = "Dia1", ano = 1, alunos = []}
+Exame {uc = "Sistemas computacionais", salas = ["Sala2"], dia = "Dia2", ano = 1, alunos = []}
+Exame {uc = "Compiladores", salas = ["Sala2"], dia = "Dia3", ano = 2, alunos = []}
+Exame {uc = "Engenharia de software", salas = ["Sala2"], dia = "Dia4", ano = 2, alunos = []}
+Exame {uc = "M\9500\174todos estat\9500\161sticos", salas = ["Sala2"], dia = "Dia5", ano = 2, alunos = []}
+Exame {uc = "Programacao orientada a objetos", salas = ["Sala2"], dia = "Dia6", ano = 2, alunos = []}
+Exame {uc = "Sistemas operativos", salas = ["Sala2"], dia = "Dia7", ano = 2, alunos = []}
+Exame {uc = "Algoritmia e estruturas de dados", salas = ["Sala2"], dia = "Dia8", ano = 2, alunos = []}
+Exame {uc = "Bases de dados", salas = ["Sala2"], dia = "Dia9", ano = 2, alunos = []}
+Exame {uc = "Comunicacao de dados", salas = ["Sala2"], dia = "Dia10", ano = 2, alunos = []}
+Exame {uc = "Laboratorio de planeamento e desenvolvimento de software", salas = ["Sala3"], dia = "Dia1", ano = 2, alunos = []}
+Exame {uc = "Metodos computacionais em engenharia", salas = ["Sala3"], dia = "Dia2", ano = 2, alunos = []}
+Exame {uc = "Programacao multiplataforma", salas = ["Sala3"], dia = "Dia3", ano = 2, alunos = []}
+Exame {uc = "Engenharia web", salas = ["Sala3"], dia = "Dia4", ano = 3, alunos = []}
+Exame {uc = "Gestao de projetos em engenharia", salas = ["Sala3"], dia = "Dia5", ano = 3, alunos = []}
+Exame {uc = "Inteligencia artificial", salas = ["Sala3"], dia = "Dia6", ano = 3, alunos = []}
+Exame {uc = "Laboratorio de aplicacoes web e bases de dados", salas = ["Sala3"], dia = "Dia7", ano = 3, alunos = []}
+Exame {uc = "Redes de computadores", salas = ["Sala3"], dia = "Dia8", ano = 3, alunos = []}
+Exame {uc = "Sistemas de informacao", salas = ["Sala3"], dia = "Dia9", ano = 3, alunos = []}
+Exame {uc = "Introducao a ciencia dos dados", salas = ["Sala3"], dia = "Dia10", ano = 3, alunos = []}
+Exame {uc = "Computacao grafica", salas = ["Sala4"], dia = "Dia1", ano = 3, alunos = []}
+Exame {uc = "Interacao pessoa computador", salas = ["Sala4"], dia = "Dia2", ano = 3, alunos = []}
+Exame {uc = "Laboratorio de projeto em engenharia informatica", salas = ["Sala4"], dia = "Dia3", ano = 3, alunos = []}
+Exame {uc = "Sistemas distribuidos", salas = ["Sala4"], dia = "Dia4", ano = 3, alunos = []}
 
 Incompatibilidades entre pares de exames:
-UCs Algebra linear e Laboratorio de informatica e computadores: 4 alunos inscritos em ambas
-UCs Algebra linear e Topicos de matematica discreta: 4 alunos inscritos em ambas
-UCs Algebra linear e Programacao procedimental: 3 alunos inscritos em ambas
-UCs Algebra linear e Seminario de informatica: 3 alunos inscritos em ambas
-UCs Algebra linear e Analise matematica II: 3 alunos inscritos em ambas
-UCs Analise matematica I e Elementos de fisica geral: 2 alunos inscritos em ambas
-UCs Analise matematica I e Engenharia nas organizacoes: 2 alunos inscritos em ambas
-UCs Laboratorio de informatica e computadores e Algebra linear: 4 alunos inscritos em ambas
-UCs Laboratorio de informatica e computadores e Topicos de matematica discreta: 4 alunos inscritos em ambas
-UCs Topicos de matematica discreta e Algebra linear: 4 alunos inscritos em ambas
-UCs Topicos de matematica discreta e Laboratorio de informatica e computadores: 4 alunos inscritos em ambas
-UCs Programacao procedimental e Algebra linear: 3 alunos inscritos em ambas
-UCs Programacao procedimental e Seminario de informatica: 4 alunos inscritos em ambas
-UCs Programacao procedimental e Analise matematica II: 4 alunos inscritos em ambas
-UCs Seminario de informatica e Algebra linear: 3 alunos inscritos em ambas
-UCs Seminario de informatica e Programacao procedimental: 4 alunos inscritos em ambas
-UCs Seminario de informatica e Analise matematica II: 4 alunos inscritos em ambas
-UCs Analise matematica II e Algebra linear: 3 alunos inscritos em ambas
-UCs Analise matematica II e Programacao procedimental: 4 alunos inscritos em ambas
-UCs Analise matematica II e Seminario de informatica: 4 alunos inscritos em ambas
-UCs Elementos de fisica geral e Analise matematica I: 2 alunos inscritos em ambas
-UCs Elementos de fisica geral e Engenharia nas organizacoes: 2 alunos inscritos em ambas
-UCs Engenharia nas organizacoes e Analise matematica I: 2 alunos inscritos em ambas
-UCs Engenharia nas organizacoes e Elementos de fisica geral: 2 alunos inscritos em ambas
