@@ -124,21 +124,28 @@ extrairUCS = map (\(_, _, nome) -> nome)
 ----- PARTE 2 ------------------------------------------------------------------------------------------
 ----- FUNCOES DA ALINEA 1 e 2 --------------------------------------------------------------------------
 
-data Exame = Exame { uc :: String, sala :: String, dia :: String, ano :: Int, alunos :: [String] } deriving (Show, Eq, Ord)
+data Exame = Exame { uc :: String, salas :: [String], dia :: String, ano :: Int, alunos :: [String] } deriving (Show, Eq, Ord)
 
-enumerarsalas :: Int -> Int -> [(String, Int)]
-enumerarsalas n lotacao = map (\i -> ("Sala" ++ show i, lotacao)) [1..n]
+enumerarsalas :: Int -> [String]
+enumerarsalas n = map (\i -> "Sala" ++ show i) [1..n]
 
 enumerardias :: Int -> [String]
 enumerardias n = map (\i -> "Dia" ++ show i) [1..n]
 
-gerarEscalonamento :: [(String, Int)] -> [(String, String)] -> [(String, [String])] -> [Exame]
-gerarEscalonamento ucs slots alunos =
-  let exames = zipWith (\uc slot -> Exame (fst uc) (fst slot) (snd slot) (snd uc) []) ucs slots
-  in map (\exame -> exame { sala = fromMaybe "" (lookup (uc exame) slots), alunos = fromMaybe [] (lookup (uc exame) alunos) }) exames
+gerarEscalonamento :: [(String, Int)] -> [(String, String)] -> [(String, [String])] -> Int -> [Exame]
+gerarEscalonamento ucs slots alunos max_capacidade =
+  let exames = zipWith (\uc slot -> Exame (fst uc) [(fst slot)] (snd slot) (snd uc) []) ucs slots
+  in map (\exame -> exame { salas = splitStudents (salas exame) (fromMaybe [] (lookup (uc exame) alunos)) }) exames
+  where
+    splitStudents :: [String] -> [String] -> [String]
+    splitStudents salas alunos
+      | length alunos > max_capacidade = splitStudents (salas ++ [nextSala (last salas)]) (drop max_capacidade alunos)
+      | otherwise = salas
+    nextSala :: String -> String
+    nextSala sala = "Sala" ++ show (read (drop 4 sala) + 1)
 
 sameDay :: Exame -> Exame -> Bool
-sameDay exame1 exame2 = ano exame1 == ano exame2 && dia exame1 == dia exame2 && uc exame1 /= uc exame2
+sameDay exame1 exame2 = ano exame1 == ano exame2 && dia exame1 == dia exame2 && null (intersect (salas exame1) (salas exame2))
 
 verificarConflitos :: [Exame] -> Bool
 verificarConflitos exames = any (\exame -> length (filter (sameDay exame) exames) > 1) exames
@@ -157,32 +164,25 @@ calcIncompatibilidadesponto1 exames =
         in (uc1, uc2, inc)) paresUCs
   in filter (\(_,_,inc) -> inc > 0) incompatibilidades
 
+
+
 writeIncompatibilidades :: [Exame] -> IO ()
 writeIncompatibilidades exames = do
   let incompatibilidades = calcIncompatibilidadesponto1 exames
   appendFile "escalonamento.txt" "\nIncompatibilidades entre pares de exames:\n"
   mapM_ (\(uc1, uc2, incompat) -> appendFile "escalonamento.txt" $ "UCs " ++ uc1 ++ " e " ++ uc2 ++ ": " ++ show incompat ++ " alunos inscritos em ambas\n") incompatibilidades
 
-verificarLotacaoSalas :: [(String, Int)] -> Int -> [(String, Int)]
-verificarLotacaoSalas salas lugares =
-  let lotacaoExcedida (sala, alunos) = alunos > lugares
-      salasExcedidas = filter lotacaoExcedida salas
-  in if null salasExcedidas
-       then salas
-       else verificarLotacaoSalas (salas ++ [("Sala" ++ show (length salas + 1), 0)]) lugares
-
-ponto1 :: [(Int, Int, String)] -> [(String, [String])] -> Int -> Int -> Int -> IO ()
-ponto1 a alinsUC b c lugares = do
+ponto1 :: [(Int, Int, String)] -> [(String, [String])] -> Int -> Int -> Int-> IO ()
+ponto1 a alinsUC b c max_capacidade= do
   let ucseano = extrairUCSeAno a
-  let salas = enumerarsalas b lugares
-  let salasVerificadas = verificarLotacaoSalas salas lugares
+  let salas = enumerarsalas b
   let dias = enumerardias c
-  let slots = [(sala, dia) | (sala, _) <- salasVerificadas, dia <- dias]
+  let slots = [(sala, dia) | sala <- salas, dia <- dias]
 
   if length slots < length ucseano
     then putStrLn "Número insuficiente de salas e/ou dias disponíveis para acomodar todos os exames existentes."
     else do
-        let escalonamento = gerarEscalonamento ucseano slots alinsUC
+        let escalonamento = gerarEscalonamento ucseano slots alinsUC max_capacidade
         if verificarConflitos escalonamento
           then putStrLn "Há conflitos no escalonamento dos exames."
           else do
