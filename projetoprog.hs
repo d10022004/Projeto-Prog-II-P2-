@@ -133,9 +133,9 @@ enumerardias :: Int -> [String]
 enumerardias n = map (\i -> "Dia" ++ show i) [1..n]
 
 gerarEscalonamento :: [(String, Int)] -> [(String, String)] -> [(String, [String])] -> Int -> [Exame]
-gerarEscalonamento ucs slots alunos max_capacidade =
-  let exames = zipWith (\uc slot -> Exame (fst uc) [(fst slot)] (snd slot) (snd uc) []) ucs slots
-  in map (\exame -> exame { salas = splitStudents (salas exame) (fromMaybe [] (lookup (uc exame) alunos)) }) exames
+gerarEscalonamento ucs slots alunoLista max_capacidade =
+  let exames = zipWith (\(uc, ano) (sala, dia) -> Exame uc [sala] dia ano (fromMaybe [] (lookup uc alunoLista))) ucs slots
+  in map (\exame -> exame { salas = splitStudents (salas exame) (alunos exame) }) exames
   where
     splitStudents :: [String] -> [String] -> [String]
     splitStudents salas alunos
@@ -144,11 +144,12 @@ gerarEscalonamento ucs slots alunos max_capacidade =
     nextSala :: String -> String
     nextSala sala = "Sala" ++ show (read (drop 4 sala) + 1)
 
-sameDay :: Exame -> Exame -> Bool
-sameDay exame1 exame2 = ano exame1 == ano exame2 && dia exame1 == dia exame2 && null (intersect (salas exame1) (salas exame2))
+
+igualdia :: Exame -> Exame -> Bool
+igualdia exame1 exame2 = ano exame1 == ano exame2 && dia exame1 == dia exame2 && null (intersect (salas exame1) (salas exame2))
 
 verificarConflitos :: [Exame] -> Bool
-verificarConflitos exames = any (\exame -> length (filter (sameDay exame) exames) > 1) exames
+verificarConflitos exames = any (\exame -> length (filter (igualdia exame) exames) > 1) exames
 
 getAlunosInscritos :: Exame -> [Exame] -> [String]
 getAlunosInscritos exame exames = alunos $ head $ filter ((== uc exame) . uc) exames
@@ -188,6 +189,7 @@ ponto1 a alinsUC b c max_capacidade= do
           else do
             writeFile "escalonamento.txt" (unlines $ map show escalonamento)
             writeIncompatibilidades escalonamento
+            putStrLn "Visialize o ficheiro escalonamento.txt para visualizar as alteraçoes feitas!"
 
 
 
@@ -229,10 +231,18 @@ recetor d s l = do
     putStrLn ("Indique a opção que prefere\n\t1->Criar ficheiro para Escalonamento\n\t2->Apresentação de incompatibilidades\t")
     op <- opcoes
     if op == 1 
-        then ponto1 cadeiras inscUCS s d l
+        then do
+            ponto1 cadeiras inscUCS s d l
+            main2
         else if op ==2
-            then ponto2 inscUCS
-            else return()
+            then do
+                ponto2 inscUCS
+                main2
+            else do
+                putStrLn ("Opcao Invalida")
+                return ()
+
+
 
 
 menu :: IO()
