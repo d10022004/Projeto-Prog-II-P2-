@@ -36,11 +36,13 @@ apresentatrab = do
 
 funcaotrabalho :: IO()
 funcaotrabalho = do
-    putStrLn "ola"
+    putStrLn "Este trabalho aborda a gestão e o escalonamento de horários e salas para a realização de\n exames, no âmbito de uma instituição de ensino superior.\n Na primeira fase do trabalho foi nos solicitado o desenvolvimento de soluções que permitam a\n gestão e visualização da informação disponível. \nEsta informação é relativa aos alunos, às unidades curriculares consideradas e à inscrição\n de alunos nas diversas unidades curriculares.\n Nesta segunda fase do trabalho é nos solicitado o \ndesenvolvimento de soluções que permitam a proposta do escalonamento de horários e \nsalas para a realização dos exames das diversas unidades curriculares.\n\n"
     return ()
 
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------ Funcoes Trabalho Projeto I ------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
----- Funcoes que buscam as informações dos ficheiros e transforma cada linha de ficheiro em uma lista --------------------------------------------
 toDisciplinas :: [String] -> [(Int, Int, String)]
 toDisciplinas = map toDisciplina
 
@@ -120,9 +122,11 @@ extrairUCSeAno = map (\(_, ano, nome) -> (nome, ano))
 extrairUCS :: [(Int, Int, String)] -> [String]
 extrairUCS = map (\(_, _, nome) -> nome)
 
--------------------------------------------------------------------------------------------------------------------------------------------
------ PARTE 2 ------------------------------------------------------------------------------------------
------ FUNCOES DA ALINEA 1 e 2 --------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+------------------------------------------------------------------------ PARTE 2 ------------------------------------------------------------------------------------------
+----- ---------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------- OPCAO 1 DO MENU ---------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 data Exame = Exame { uc :: String, salas :: [String], dia :: String, ano :: Int, alunos :: [String] } deriving (Show, Eq, Ord)
 
@@ -193,8 +197,9 @@ ponto1 a alinsUC b c max_capacidade= do
 
 
 
---------------------------------------------------------------------------------------------------------------------
----------Funcoes das alineas 3 e 4----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------- OPCAO 2 DO MENU---- ----------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 type UC = String
 type Aluno = String
@@ -220,15 +225,17 @@ ponto2 a = do
 
 
 
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------- FUNCOES PRINCIPAIS --------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
--------------------------FUNCOES PRINCIPAIS------------------------------------------------------------
 recetor :: Int -> Int -> Int -> IO()
 recetor d s l = do
     inscricao <- apreins
     listalunos <- apreal
     cadeiras <- apreuc
     inscUCS <-encdisc cadeiras inscricao listalunos
-    putStrLn ("Indique a opção que prefere\n\t1->Criar ficheiro para Escalonamento\n\t2->Apresentação de incompatibilidades\t")
+    putStrLn ("Indique a opção que prefere\n\t1->Criar ficheiro para Escalonamento\n\t2->Apresentação de incompatibilidades\n\tQualquer opção->Sair")
     op <- opcoes
     if op == 1 
         then do
@@ -239,10 +246,7 @@ recetor d s l = do
                 ponto2 inscUCS
                 main2
             else do
-                putStrLn ("Opcao Invalida")
                 return ()
-
-
 
 
 menu :: IO()
@@ -252,7 +256,7 @@ menu = do
     dias <- opcoes
     putStrLn ("\n->INTRODUZA O NUMERO DE SALAS EXISTENTES\n")
     salas <- opcoes
-    putStrLn ("\n->INTRODUZA O NUMERO DE LUGARES DISPONIVEIS EM CADA SALA\n")
+    putStrLn ("\n->INTRODUZA O NUMERO DE LUGAWRES DISPONIVEIS EM CADA SALA\n")
     lugares <- opcoes
     recetor dias salas lugares
     return ()
